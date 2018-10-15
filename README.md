@@ -2,7 +2,7 @@
 
 > Fifth and final project required to earn the **API and Microservices** certification @freeCodeCamp.
 
-<!-- Link to the UI of the homepage right [here](). -->
+Link to the UI for the homepage right [here](https://codepen.io/borntofrappe/full/mzqzLa).
 
 <!-- Link to the working project right [here](). -->
 
@@ -60,4 +60,4 @@ These first notes allow to clear the air as to the purpose of the project. Unfor
 
 ## Front-End
 
-The design of the homepage was the subject of a dedicated front-end effort. You can check out the pen [right here](https://codepen.io/borntofrappe/full/mzqzLa). The HTML, CSS and JS files making up in the application are included in the `public` and `views` folders, but the dedicated repo can be found [right here]().
+The design of the homepage was the subject of a dedicated front-end effort. You can check out the pen [right here](https://codepen.io/borntofrappe/full/mzqzLa). The HTML, CSS and JS files making up in the application are included in the `public` and `views` folders, but the dedicated repo can be found [right here](https://github.com/borntofrappe/Practice-Front-End-Web-Development/tree/master/Front-End%20File%20Metadata).

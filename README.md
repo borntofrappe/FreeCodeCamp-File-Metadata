@@ -57,3 +57,7 @@ What happens if a rather heavy file is selected? After quite a bit of time, the 
 ```
 
 These first notes allow to clear the air as to the purpose of the project. Unfortunately, they do not shed a lot of light as to **how** achieve the described outcome. Similarly to the previous projects, I will dedicate a coding session to the design of the application, to the UI of the root path. This to stretch my front-end skills and possibly let my brain work on the development which follows. In the back burner.
+
+## Front-End
+
+The design of the homepage was the subject of a dedicated front-end effort. You can check out the pen [right here](https://codepen.io/borntofrappe/full/mzqzLa). The HTML, CSS and JS files making up in the application are included in the `public` and `views` folders, but the dedicated repo can be found [right here]().

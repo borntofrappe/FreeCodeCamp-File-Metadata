@@ -65,11 +65,18 @@ body {
     background: #31312d;
   }
 }
-.app__input {
+.app__form {
   display: flex;
   flex-direction: column;
 }
-.app__input input {
+/* remove the input of type file from view */
+.app__form input[type="file"] {
+  display: none;
+}
+/* style the label used in place of the input of type file similarly to the other input */
+.app__form input[type="submit"],
+.app__form label[for="upfile"] {
+  text-align: center;
   background: none;
   border: none;
   border-radius: 4px;
@@ -83,10 +90,37 @@ body {
   margin: 0.5rem 0;
   transition: all 0.25s ease-out;
 }
-.app__input input:hover {
+.app__form input[type="submit"]:hover,
+.app__form label[for="upfile"]:hover {
   background: #31312d;
   color: #f3e9d3;
   box-shadow: 0 0 0 3px #f3e9d3, 0 0 0 6px #31312d;
+}
+/* position relative for a pseudo element used to create an down-facing arrow */
+.app__form label[for="upfile"] {
+  position: relative;
+}
+/* with a pseudo element, draw an arrow pointing downward, to pinpoint the label toward the file chosen */
+.app__form label[for="upfile"]:before {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-top: 0.5rem solid #31312d;
+  border-right: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+  border-left: 0.5rem solid transparent;
+  transition: all 0.25s ease-out;
+}
+.app__form label[for="upfile"]:hover:before {
+  transition-delay: 0.05s;
+  transform: translate(-50%, 6px);
+}
+/* style the label displaying the chosen file to place it clearly in between the input elements */
+.app__form label#chosenfile {
+  text-align: center;
+  margin: 0.5rem 0 1rem;
 }
 .file {
   margin-top: 2rem;
@@ -97,7 +131,7 @@ body {
   justify-content: flex-end;
   align-items: flex-end;
   padding: 0.5rem;
-  animation: popUp 5s 2s ease-in alternate infinite both;
+  animation: popUp 5s 1s ease-in alternate infinite both;
   position: relative;
 }
 .file:after {

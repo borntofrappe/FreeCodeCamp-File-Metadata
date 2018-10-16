@@ -19,12 +19,20 @@
   <!--
     include the input elements required by the application in a _main_ element
     add an extra container for a small animation
+
+    ! the input of type style has style defaults which are quite hard to alter
+    to fix such a construct, include a label for the id and set `display` to `none` for the label itself
+    if the label has a `for` attribute matching the `id` of the input, clicking on the label allows the same functionality as clicking the input
   -->
   <div class="app">
-    <main class="app__input">
-      <input type="submit" value="Choose File">
-      <input type="submit" value="Upload">
-    </main>
+    <form class="app__form" action="/api/fileanalyse" method="POST" enctype="multipart/form-data">
+      <!-- include a label for the input of type style, used visually in its place -->
+      <label for="upfile">Choose file</label>
+      <input type="file" id="upfile" name="upfile" />
+      <!-- include an additional label in which to show which file is chosen -->
+      <label id="chosenfile">No file chosen</label>
+      <input type="submit" value="Upload" />
+    </form>
 
     <!--
       the animation is centered around the simple image of a file

@@ -61,3 +61,45 @@ These first notes allow to clear the air as to the purpose of the project. Unfor
 ## Front-End
 
 The design of the homepage was the subject of a dedicated front-end effort. You can check out the pen [right here](https://codepen.io/borntofrappe/full/mzqzLa). The HTML, CSS and JS files making up in the application are included in the `public` and `views` folders, but the dedicated repo can be found [right here](https://github.com/borntofrappe/Practice-Front-End-Web-Development/tree/master/Front-End%20File%20Metadata).
+
+## Back-End
+
+I was not sure as to how to allow the visitor to select a file. Luckily, while developing the UI of the application I came upon the MDN documentation on the `input` element. Among the possible values of the `type` attribute, `file` appeared to completely answer all of my worries. The type is well documented [right here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file) and beside causing a few issues with the style of the application, it tackles the main feature the application ought to offer. That being selecting a file from local storage.
+
+### Front-End Update
+
+To tailor this new input element and an eventual POST request, the following modifications are enacted on the HTML markup:
+
+- change the `main` container nesting the `input` elements to actually be a `form`.
+
+  Add here attributes for the `action`, directing toward the established path of `/api/fileanalyse` and for the `method`, naturally picking `POST`.
+
+  ```HTML
+  <form class="app__form" action="/api/fileanalyse" method="POST">
+    <!--  input elements  -->
+  </form>
+  ```
+
+- for the first `input` element, add a `type` attribute of `file` and a `name` attribute of `upfile`. The second `input` element doesn't need any modification, as it already details a `type` of `submit`.
+
+  ```HTML
+  <form class="app__form" action="/api/fileanalyse" method="POST">
+    <input type="file" name="upfile">
+    <input type="submit" value="Upload">
+  </form>
+  ```
+
+- to pass data instead of simply text, as accessible through the `body-parser` package, an attribute of `enctype` must be set to `multipart/form-data`.
+
+  As documented [right here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-enctype), and included as follows:
+
+  ```HTML
+  <form class="app__form" action="/api/fileanalyse" method="POST" enctype="multipart/form-data">
+    <input type="file" name="upfile">
+    <input type="submit" value="Upload">
+  </form>
+  ```
+
+### Update
+
+As it turns out, an `input` element of `type="file"` messes up my design as detailed in the Front-End folder. To fix this, I've added a couple of `label` elements, which is why the markup might look a tad different. The important thing is that a `label` element with a `for` attribute that matches the `id` of an `input` element allows to enable the same functionality as clicking the input element itself.

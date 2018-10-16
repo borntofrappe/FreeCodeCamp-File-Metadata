@@ -103,3 +103,43 @@ To tailor this new input element and an eventual POST request, the following mod
 ### Update
 
 As it turns out, an `input` element of `type="file"` messes up my design as detailed in the Front-End folder. To fix this, I've added a couple of `label` elements, which is why the markup might look a tad different. The important thing is that a `label` element with a `for` attribute that matches the `id` of an `input` element allows to enable the same functionality as clicking the input element itself.
+
+### JavaScript Script
+
+After quite a bit of research, I discovered how the `body-parser` package was quite unfit to collect information about the file being submitted. The `multer` package turned out to be the dependency for the job. How did I find out about this package? Well, the error message of the application provided by freeCodeCamp was already a hint in the right direction:
+
+```code
+(/app/node_modules/multer/lib/make-middleware.js:52:37)
+```
+
+A quick google search on the library proved to be rather fruitful, with the package well documented right [here](https://github.com/expressjs/multer).
+
+Of course this roundabout sketchy discovery could have been avoided by using the boilerplate provided by freeCodeCamp in the first place.
+
+```JS
+// require and use "multer"...
+```
+
+Regardless of how I came about to discover **multer**, it functions rather similarly to the **body-parser** package.
+
+Once set up:
+
+```JS
+// require multer
+const multer = require('multer');
+// set up the upload method from the multer package
+// a single file will be uploaded
+// the input element has a `type`of `file` and a `name` of `upfile`
+const upload = multer().single('upfile');
+```
+
+It allows to retrieve the information from submitted file in a property of the request. Specifically `req.file`.
+
+```JS
+app.post('/api/fileanalyse', upload, (req, res) => {
+  // access the file's information from req.file
+  file = req.file;
+}
+```
+
+With a small conditional checking if such a file is `undefined` (meaning the form was submitted without a file), an appropriate JSON object can be sent back to the visitor.

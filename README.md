@@ -143,3 +143,24 @@ app.post('/api/fileanalyse', upload, (req, res) => {
 ```
 
 With a small conditional checking if such a file is `undefined` (meaning the form was submitted without a file), an appropriate JSON object can be sent back to the visitor.
+
+### Update
+
+By tinkering with the application, I realized how my label+input design had a small mishap. By uploading a file and going back to the homepage, indeed the label pointed toward "File not chosen", but selecting the same file again would not update this string. To avoid such a minor, yet unnerving error, a bit of JavaScript can be used.
+
+In the JavaScript file served alongside the stylesheet, the text of the label can be updated as needed. Additionally, the value of the input can be "reset" as the homepage loads.
+
+```JS
+const upfileInput = document.querySelector('input#upfile');
+const chosenfileLabel = document.querySelector('label#chosenfile');
+// reset the value of the input element
+upfileInput.value = '';
+
+// on change update the label's text to match the selected file
+upfileInput.addEventListener('change', (e) => {
+  // the file's name is available in an array under `event.target.files`
+  // as there's only one item, target it and retrieve its name
+  const file = e.target.files[0].name;
+  chosenfileLabel.textContent = file;
+});
+```
